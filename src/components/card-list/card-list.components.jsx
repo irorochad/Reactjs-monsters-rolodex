@@ -10,7 +10,7 @@ class CardList extends Component {
           <div key={monster.id} className="card-container">
             <img
               src={`https://robohash.org/${monster.id}?set=set2`}
-              alt="Monster Image"
+              alt="Monster "
             />
             <h2>{monster.name}</h2>
             <p>{monster.email}</p>
