@@ -1,3 +1,7 @@
+# A simple react js monsers rolodex project. 
+
+You can see the live demo [here](https://irorochad.github.io/Reactjs-monsters-rolodex/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
