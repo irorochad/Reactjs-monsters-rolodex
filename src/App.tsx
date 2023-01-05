@@ -1,35 +1,39 @@
-// import { Component } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 
-// import logo from "./logo.svg";
 import SearchBox from "./components/search-box/search-box.componenets";
 import CardList from "./components/card-list/card-list.components";
+import { getData } from "./utils/data.utils";
+
 import "./App.css";
+
+export type Monster = {
+  id: number;
+  name: string;
+  email: string;
+  username: string;
+};
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
-  const [monsters, setMonster] = useState([]);
+  const [monsters] = useState<Monster[]>([]);
 
-  // console.log({ searchField });
+  useEffect(() => {
+    const fetchUsers = async () => {
+      await getData<Monster[]>("https://jsonplaceholder.typicode.com/users");
+    };
+    fetchUsers();
+  }, []);
 
-  const onchangeBtn = (event) => {
+  const onchangeBtn = (event: ChangeEvent<HTMLInputElement>): void => {
     const searchFieldSting = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldSting);
   };
 
   const filteredMonsters = monsters.filter((monster) => {
-          return monster.name.toLocaleLowerCase().includes(searchField);
-        });
-
-    
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => setMonster(users));
-  }, []);
+    return monster.name.toLocaleLowerCase().includes(searchField);
+  });
 
   return (
-    
     <div className="App">
       <h1 className="app-title">Monsters Rolodex</h1>
       <SearchBox
