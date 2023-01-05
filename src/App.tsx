@@ -15,11 +15,14 @@ export type Monster = {
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
-  const [monsters] = useState<Monster[]>([]);
+  const [monsters, setMonster] = useState<Monster[]>([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      await getData<Monster[]>("https://jsonplaceholder.typicode.com/users");
+      const users = await getData<Monster[]>(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      setMonster(users);
     };
     fetchUsers();
   }, []);
